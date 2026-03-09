@@ -1,6 +1,6 @@
 # Mariko OC Guide
 
-*Made with love by Dominatorul. Some parts of this guide belong to ChanseyIsTheBest, Lightos_, Souldbminer, TDRR and Samybigio.*
+*Made with love by Dominatorul. Some parts of this guide belong to ChanseyIsTheBest, Lightos_ and Souldbminer*
 
 ---
 
@@ -30,7 +30,7 @@ Overclocking is inherently risky as it pushes the system beyond its original des
 :::
 
 ::: danger
-Unstable RAM overclocking can cause sysNAND/emuNAND corruption and SD card corruption, particularly if done on sysNAND. Test the overclock settings on emuNAND and back up your sysNAND, emuNAND and PRODINFO before installing Horizon-OC.
+Unstable RAM overclocking can cause sysNAND/emuNAND corruption and SD card corruption, particularly if done on sysNAND. Test the overclock settings on emuNAND and back up your sysNAND, emuNAND and PRODINFO before installing horizon-oc.
 :::
 
 ---
@@ -46,7 +46,7 @@ Reducing the voltage (**undervolting, UV**) decreases power draw, current, heat 
 
 ### Charger IC Limit:
 - 18W limit restricts overclocking for both Erista and Mariko units (12W on Switch Lite). This is the main limiting factor, but the PMIC current limits for CPU and GPU will be reached first.
-- Setting a Charge Current Override will NOT bypass this limit.
+- Setting a Charge Current Override will NOT bypass this limit
 
 ### GPU Scheduling
 
@@ -63,7 +63,7 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 
 # Monitoring Your Switch
 - Use the Horizon OC Monitor to indicate if you've bypassed the charger IC limit (e.g., -1W displayed while charging).
-- To get the best results, be sure your battery is 10-90% to display the real charging.
+- To get the best results, be sure your battery is 10-90% to display the real charging
 
 ---
 
@@ -85,13 +85,12 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 
 | Tier        | RAM ID           |
 |-------------|------------------|
-| GOD-tier    | WT:B, NEI/NEE |
+| GOD-tier    | NEI/NEE, WT:B          |
 | S-tier      |  AA-MGCR, AA-MGCL           |
-| A-tier      |AM-MGCJ, WT:E  |
-| B-tier      | WT:F    |
-| C-tier      | AB-MGCL    |
+| A-tier      |WT:F   |
+| B-tier      | AM-MGCJ, WT:E    |
+| C-tier      | AB-MGCL     |
 | D-tier      | NME     |
-
 
 ---
 
@@ -101,14 +100,20 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 - **Uncapped Clocks:**
   - Removes the clock cappings. Use with caution, especially on handheld mode. Recommended: ON
 
-- **Thermal Throttle:**
-  - Lowers clocks when a certain temperature threshold is reached (by default the limit is 70C). Recommended: ON
-
-- **Handheld TDP:**
-  - Lowers clocks when the power being pulled from the battery exceeds a threshold (by default 9600mW on regular consoles, 6400mW on lite). Recommended: OFF
-
 - **Overwrite Boost Mode:**
   - Allows boost mode to be overwritten with a custom profile. Recommended: OFF
+
+- **Thermal Throttle:**
+  - Lowers clocks when a certain temperature threshold is reached (by default 70C/158F). Recommended: ON
+
+- **Handheld TDP:**
+  - Lowers clocks when the power being pulled from the battery exceeds a threshold (by default 8600mW on regular consoles, 6400mW on lite). Recommended: ON
+
+- **Enforce Board Limit:**
+  - Lowers clocks when the board/charging IC limit is exceeded. Recommended: OFF (this feature still has issues)
+
+- **Charge Current Override:**
+  - Allows overriding the charge current. Recommended: Disabled
 
 - **Display Refresh Rate Changing:**
   - Allows changing the display refresh rate via profiles. Recommended: ON (This conflicts with FPSLocker's display refresh rate features, if you intend to use those, keep it OFF)
@@ -116,11 +121,14 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 - **Allow Display Unsafe Frequencies:**
   - Allows changing the display refresh rate to unsafe frequencies. Recommended: OFF
 
+- **CPU Max Display Clock:**
+  - Determines the maximum clock you will be able to set manually (without Boost Mode). Recommended to keep at your maximum safe clock. This will NOT affect your CPU Max Clock.
+
 ## CPU Settings
 
 - **Boost Clock**
-  - 2601 MHz
- > **Note** Exceeding the PMIC Limit in boost mode is *usually* fine as it is only active for short periods of time.
+  - Whatever is within **Voltage Limit**.
+ > **Note** Exeeding the PMIC Limit in boost mode is *usually* fine as it is only active for short periods of time.
 
 - **UV Table:** 1683Mhz Tbreak
   - If you cannot even do **High Freq UV1**, try **1581Mhz Tbreak**.
@@ -130,8 +138,6 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 - **Low Undervolt Mode:** 1-8 (start with 4).
   - Increase gradually if stable and find your highest stable value.
   - If the console fails to boot, lower the value.
-  - Some consoles may not boot even with low UV 1.
-    - This isn't much of a problem, because high UV is more important.
 
 - **High UV:** 5-12 (find your highest stable value).
 
@@ -140,9 +146,9 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 
 - **Low Freq Vmin:** 590 mV
   - In case you experience issues with low Freq UV, try raising Low Freq Vmin to 610-620mV.
-  - Going below 590mV is not recommended as it may mess up the CPU table.
+  - Going below 590mV is not recommended as it may mess up the cpu table.
 
-- **High Freq Vmin:** 720–750 mV, 850-870 may be required for high RAM clocks
+- **High Freq Vmin:** 720–750 mV, 850-870 may be required for high ram clocks
 
 - **Voltage Limit:**
   - **1120 mV:** Safe - recommended
@@ -152,14 +158,19 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 
 - **Undervolt Table:** HiOPT Table
 
+TODO: auto vmin/gpu ram dvfs is not implemented into hoc-clk currently
 - **GPU DVFS:**
   - When RAM is overclocked, the minimum GPU voltage requirement is raised.
-  - **DVFS** automatically adjusts your vmin based on your ram clock.
+  - Auto vmin automatically adjusts your vmin based on your ram clock.
   - When using the base ram clocks (1600 MHz), **GPU DVFS** is not active.
+    - **2 (Hijack method):** Recommended - provides the lowest value possible.
+    - **1 (Official service method):** Use only if you encounter issues with mode 2.
 
- - **GPU DVFS Offset:** 0
+ - **GPU DVFS Offset:** Auto
 
-- **Vmin:** Auto
+- **Vmin:** 550-620+ mV
+  - Higher ram clocks need higher GPU vMIN.
+  - You can use [this calculator](https://horizon-oc.github.io/Web-vMin-Calculator/) to determine your vMIN for a given RAM frequency.
 
 - **Vmax:** 800 mV
 
@@ -168,51 +179,44 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 ## RAM Settings
 
 - **HP Mode** ON
- > **ℹ️ Tip:** HP Mode improves latency by disabling power down.
- > Lower latency significantly improves 1% lows and reduces stuttering.
- > While rare, some RAM modules may not handle it well.
- > First, find your max RAM clocks and timings with **HP Mode** disabled.
- > Then test with enabled **HP Mode**. If stable, use it - otherwise disable it.
+  > **ℹ️ Tip:** HP Mode improves latency by disabling power down, but some RAM modules may not handle it well.
+  > - First, find your max RAM clocks and timings with **HP Mode** disabled.
+  > - Then test with enabled **HP Mode**. If stable, use it - otherwise disable it.
 
 - **DVB Shift:** 1–10
   - Boosts SoC voltage to help stabilize RAM, especially at high frequencies (2400 MHz+ and 3000Mhz+).
-  - It's advised to start of with a DVB shift of 10 and only lower it to 2-6 after finding your max RAM speed.
-   - Higher DVB shift does not measurably increase power draw, but it is going to increase heat slightly.
+  - It's adviced to start of with a DVB shift of 8-10 and only lower it to 2-6 after finding your max ram speed.
+  - Higher DVB shift does not increase power draw, but it is going to increase heat slightly.
 
 ### RAM Configuration Based on Tier for Different Base Latency
 
 #### 2133/1866 Base Latency Tier List (Recommended docked)
-| Tier | RAM ID       | Ram Clock | VDD2   | VDDQ  | Common Timings           | Super Tight (ST) Timings  |
-|------|--------------|-----------|--------|-------|--------------------------|---------------------------|
-| GOD  | WT:B         | 3066–3200 | 1175 mV| 600 mV| (4-4-5) 4-2-6-5-6        | (6-6-7) 6-2-6-5-6         |
-| GOD  | NEI/NEE/x267 | 3100–3300 | 1175 mV| 640 mV| (3-3-2) 1-5-5-4-6        | (4-4-4) 2-7-6-5-6         |
-| S    | AA-MGCL/MGCR | 2766–3100 | 1175 mV| 640 mV| (4-4-5) 4-5-6-7-6        | (4-4-8) 5-5-7-8-6         |
-| A    | AM-MGCJ      | 2633–2933 | 1175 mV| 640 mV| (3-2-4) 1-4-4-4-6        | (4-3-8) 1-5-4-4-6         |
-| A    | WT:E         | 2500–2933 | 1175 mV| 600 mV| (2-2-2) 1-4-4-4-6        | (3-5-3) 2-5-4-5-6         |
-| B    | WT:F         | 2633–2800 | 1175 mV| 600 mV| (4-4-2) 4-4-6-3-6        | (5-5-4) 4-5-6-5-6         |
-| C    | AB-MGCL      | 2500-2766 | 1175 mV| 640 mV| (4-4-4) 3-4-5-6-6        | (4-4-8) 4-5-6-8-6         |
-| D    | NME          | 2500-2766 | 1175 mV| 640 mV| (2-2-1) 0-1-4-3-6        | (3-3-4) 0-1-4-4-6         |
+| Tier | RAM ID              | Ram Clock (MHz)         | VDD2   | VDDQ  | Common Timings      | Super‑Tight (ST) Timings |
+|------|---------------------|-------------------------|--------|-------|---------------------|--------------------------|
+| GOD  | WT:B                | 3066–3200               | 1175 mV| 600 mV| (4‑4‑5) 4‑2‑6‑5‑6   | (6‑6‑7) 6‑2‑6‑5‑6        |
+| GOD  | NEI/NEE             | 3100–3300               | 1175 mV| 640 mV| (3‑3‑3) 1‑5‑5‑4‑6   | (4‑4‑4) 2‑7‑6‑6‑6        |
+| S    | AA‑MGCL/MGCR        | 2766–3100               | 1175 mV| 640 mV| (4‑4‑5) 4‑5‑6‑7‑6   | (4‑4‑8) 5‑5‑7‑8‑6        |
+| A    | MGCJ                | 2633–2933               | 1175 mV| 640 mV| (3‑2‑4) 1‑4‑4‑4‑6   | (4‑3‑8) 2‑5‑4‑4‑6          |
+| B    | WT:F                | 2633–2800               | 1175 mV| 600 mV| (4‑4‑2) 4‑4‑6‑3‑6   | (5‑5‑4) 4‑5‑6‑5‑6        |
+| C    | AB‑MGCL             | 2500-2766                  | 1175 mV| 640 mV| (4‑4‑4) 3‑4‑5‑6‑6   | (4‑4‑8) 4‑5‑6‑8‑6        |
+| D    | NME                 | 2500–2766               | 1175 mV| 640 mV| (2‑2‑1) 0‑1‑4‑3‑6   | (3‑3‑4) 0‑1‑4‑4‑6        |
 
-> You may use 1866 read/write latency to improve performance, although this may lower maximum ram frequency slightly unless you raise vdd2.
+> You may use 1866 read/write latency to improve performance although it could require increased voltages
 
 #### 1600 Base Latency Tier List
-| Tier | RAM ID       | Ram Clock | VDD2   | VDDQ  | Common Timings           | Super Tight (ST) Timings  |
-|------|--------------|-----------|--------|-------|--------------------------|---------------------------|
-| GOD  | NEI/NEE/x267 | 2500–2933 | 1175 mV| 640 mV| (3-3-2) 1-5-5-4-6        | (4-4-4) 2-7-6-5-6         |
-| GOD  | WT:B         | 2466–2600 | 1175 mV| 600 mV| (4-4-5) 4-2-6-5-6        | (6-6-7) 6-2-6-5-6         |
-| S    | WT:F         | 2400–2533 | 1175 mV| 600 mV| (4-4-2) 4-4-6-3-6        | (5-5-4) 4-5-6-5-6         |
-| A    | AA-MGCL/MGCR | 2300–2600 | 1175 mV| 640 mV| (4-4-5) 4-5-6-7-6        | (4-4-8) 5-5-7-8-6         |
-| B    | AM-MGCJ      | 2300–2466 | 1175 mV| 640 mV| (3-2-4) 1-4-4-4-6        | (4-3-8) 1-5-4-4-6         |
-| B    | WT:E         | 2300–2466 | 1175 mV| 600 mV| (2-2-2) 1-4-4-4-6        | (3-5-3) 2-5-4-5-6         |
-| C    | AB-MGCL      | 2133–2500 | 1175 mV| 640 mV| (4-4-4) 3-4-5-6-6        | (4-4-8) 4-5-6-8-6         |
-| D    | NME          | 2133–2333 | 1175 mV| 640 mV| (2-2-1) 0-1-4-3-6        | (3-3-4) 0-1-4-4-6         |
-
-::: danger
-It's recommended to find your maximum ram frequency before adjusting timings. This makes it easier to pinpoint common failure points. Also, ``t7`` and ``t6`` are very frequency dependent and may need to be loosened at higher ram clocks.
-:::
+| Tier | RAM ID              | Ram Clock (MHz) | VDD2   | VDDQ  | Common Timings        | Super Tight (ST) Timings |
+|------|---------------------|-----------------|--------|-------|-----------------------|--------------------------|
+| GOD  | NEI/NEE/x267        | 2500–2933       | 1175 mV| 640 mV| (3‑3‑3) 1‑5‑5‑4‑6     | (4‑4‑4) 2‑7‑6‑5‑6        |
+| GOD  | WT:B                | 2466–2600       | 1175 mV| 600 mV| (4‑4‑5) 4‑2‑6‑5‑6     | (6‑6‑7) 6‑2‑6‑5‑6        |
+| S    | AA‑MGCL/MGCR        | 2300–2600       | 1175 mV| 640 mV| (4‑4‑5) 4‑5‑6‑7‑6     | (4‑4‑8) 5‑5‑7‑8‑6        |
+| A    | WT:F                | 2400–2533       | 1175 mV| 600 mV| (4‑4‑2) 4‑4‑6‑3‑6     | (5‑5‑4) 4‑5‑6‑5‑6        |
+| B    | AM‑MGCJ             | 2300–2466       | 1175 mV| 640 mV| (3‑2‑4) 1‑4‑4‑4‑6     | (4‑3‑8) 1‑5‑4‑4‑6        |
+| B    | WT:E                | 2300–2466       | 1175 mV| 600 mV| (2‑2‑2) 1‑4‑4‑4‑6     | (3‑5‑3) 2‑5‑4‑5‑6        |
+| C    | AB‑MGCL             | 2133–2500       | 1175 mV| 640 mV| (4‑4‑4) 3‑4‑5‑6‑6     | (4‑4‑8) 4‑5‑6‑8‑6        |
+| D    | NME                 | 2133–2333       | 1175 mV| 640 mV| (2‑2‑1) 0‑1‑4‑3‑6     | (3‑3‑4) 0‑1‑4‑4‑6        |
 
 ::: tip Note
-1333tRWL achieves better performance but tops out at a lower frequency (often 300-500MHz less compared to 1600tRWL), recommended to test for handheld.
+1333tWRL achieves better performance but tops out at a lower frequency (often 300-500MHz less compared to 1600tWRL), recommended to test for handheld.
 :::
 
 ::: tip Note
@@ -228,7 +232,7 @@ If your RAM clock goes significantly lower than the target, you may be experienc
 > **💡 Extra Headroom:** For tighter timings or base latency reduction, you may use slight overvoltage. Note that too much overvoltage can cause instability.
 
 > **🧪 Testing Method:**
-> 1. Start by setting **DVB = 10** using the common preset.
+> 1. Start by setting **DVB = 8** using the common preset.
 > 2. Test **ST (Super Tight) timings**.
 > 3. If ST fails, relax timings one by one in this order: `t8 → t1 → t2 → t3 → t6 → t7 → t4 → t5`.
 > 4. For pushing beyond ST, apply the same incremental approach.
@@ -236,7 +240,7 @@ If your RAM clock goes significantly lower than the target, you may be experienc
 > **⚡ Performance:** ST timings provide enhanced performance over common timings.
 
 > **⚠️ Stability Notes:**
-> - Lower **T7**, **T6** or **T5** if you encounter issues.
+> - Lower **T5** or **T6** if you encounter issues.
 > - RAM contributes the most to overall performance - prioritize finding your maximum frequency first.
 > - Rarely, some modules may fail even with common timings. If so, lower timings until stable.
 
