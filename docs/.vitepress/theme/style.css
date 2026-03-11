@@ -131,8 +131,8 @@
 
 :root {
   --vp-home-hero-name-font-size: 48px;
-  --vp-home-hero-name-gradient: linear-gradient(90deg, #ff5e9c 0%, #ff8a5c 45%, #ffd166 100%);
-  --vp-home-hero-image-background-image: radial-gradient(circle at 35% 35%, rgba(130, 130, 130, 0.85), transparent 45%),
+  --vp-home-hero-name-gradient: linear-gradient(90deg, #1f5aff 0%, #00a2ff 45%, #20c8fc 100%);
+  --vp-home-hero-image-background-image: radial-gradient(circle at 35% 35%, rgba(0, 193, 252, 0.85), transparent 45%),
     radial-gradient(circle at 65% 25%, rgba(88, 88, 88, 0.9), transparent 55%),
     radial-gradient(circle at 40% 70%, rgba(36, 36, 36, 0.6), transparent 65%);
   --vp-home-hero-image-filter: blur(60px);
@@ -160,7 +160,7 @@
   color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 35px rgba(255, 94, 156, 0.4);
+  text-shadow: 0 0 35px rgba(0, 238, 255, 0.4);
   margin-bottom: 0px;
 }
 

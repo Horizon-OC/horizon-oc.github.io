@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Horizon OC",
-  head: [['link', { rel: 'icon', href: '235948817.png' }]],
+  head: [['link', { rel: 'icon', href: 'logo.png' }]],
   description: "An open source overclocking tool for Nintendo Switch consoles running Atmosphere custom firmware ",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -18,7 +18,7 @@ export default defineConfig({
         text: 'Links',
         items: [
           { text: 'Original Mariko Guide', link: 'https://rentry.co/mariko' },
-          { text: 'Page Source', link: 'https://github.com/OEMunlag/Horizon-OC-pages' }
+          { text: 'Page Source', link: 'https://github.com/Horizon-OC/horizon-oc.github.io' }
         ]
       }
     ],

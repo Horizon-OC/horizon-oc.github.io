@@ -8,7 +8,7 @@ description: Guide to installing Horizon OC
 Getting started is easy, so long as you have a modded Switch with Atmosphere.
 
 **Currently supported Atmosphere version:** `1.10.2`
-Please check that your Atmosphere version matches before proceeding.
+Please check that your Atmosphere version matches before proceeding, otherwise you will get a black screen.
 
 ::: warning IMPORTANT
 Whenever you install HOC, we recommend doing it through **Haze MTP**, **Hekate UMS**, or any **FTP server**. Do not remove the SD card from the slot; frequent removal can harm the reader.
@@ -19,11 +19,8 @@ Whenever you install HOC, we recommend doing it through **Haze MTP**, **Hekate U
 3. Once you've downloaded it, the extracted contents are drag-n-drop. You can let it overwrite contents on the SD card if prompted.
 
 ::: info NOTE
-This may overwrite your current version of `sys-clk`. If you must keep your specific version, copy only `atmosphere/kips/hoc.kip` to the SD card in its respective folder. However, rest assured `hoc-clk` has many more features and is the supported version going forward.
+This will overwrite your current version of `sys-clk`. If you must keep your specific version, copy only `atmosphere/kips/hoc.kip` to the SD card in its respective folder. However, rest assured `hoc-clk` has many more features and is the supported version going forward.
 :::
-
-::: tip Custom exosphere
-You might have noticed on the root of the folder there's an `exosphere.bin` file. This allows you to perform memory timings on-the-go without a restart. This is optional and it will not affect overclocking capabilities.
 
 To use it, copy it to: `atmosphere/exosphere.bin`
 :::
@@ -45,13 +42,8 @@ Add the following line to the bottom of your chosen profile:
 kip1=atmosphere/kips/hoc.kip
 ```
 
-And if you included the **exosphere patch**, add this line as well:
-```ini
-secmon=atmosphere/exosphere.bin
-```
-
 ::: tip Safety Instance
-You can also make a separate instance to boot without the .kip and exosphere patch. In case an unstable overclock config causes instability, you can boot into this "clean" instance to fix your config.
+You can also make a separate instance to boot without the .kip. In case an unstable overclock config causes instability, you can boot into this "clean" instance to fix your config.
 
 Example:
 ```ini
@@ -60,12 +52,12 @@ pkg3=atmosphere/package3
 emummcforce=1
 icon=bootloader/res/emu_boot.bmp
 ```
-Note the lack of `kip1` and `secmon`. While `hoc-clk`, the sysmodule, and the overlay will still boot, the overclock configurations will **not** be applied.
+Note the lack of `kip1`. While `hoc-clk`, the sysmodule, and the overlay will still boot, the overclock configurations will **not** be applied.
 :::
 
 ### Running the Overlay
 
-You're ready to go! After booting, if it succeeded, you can open your overlay (we highly recommend **Ultrahand**, as it's the only one supported, because hoc-clk builds upon libultrahand) generally by pressing <kbd>ZL</kbd> + <kbd>ZR</kbd> + <kbd>D-Pad Down</kbd>. Then, you will find both Horizon OC and Horizon OC Status Monitor in the list.
+You're ready to go! After booting, if it succeeded, you can open your overlay (we highly recommend **Ultrahand**, as it's the only one supported, because hoc-clk builds upon libultrahand) generally by pressing <kbd>ZL</kbd> + <kbd>ZR</kbd> + <kbd>D-Pad Down</kbd>. Then, you will find both Horizon OC and Horizon OC Monitor in the list.
 
 Depending on your Switch model, refer to the specific configuration guide:
 

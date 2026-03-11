@@ -4,8 +4,7 @@ layout: home
 
 hero:
   name: "Horizon OC"
-  text: "An open source overclocking tool for Nintendo Switch consoles running Atmosphere custom firmware"
-  tagline: I'm still in a dire need of taglines
+  text: "An overclocking tool for Nintendo Switch"
   image:
     src: /lite.svg
     alt: Horizon OC Logo
@@ -15,19 +14,19 @@ hero:
       link: /guide
     - theme: alt
       text: Download Horizon OC
-      link: https://github.com/Horizon-OC/Horizon-OC/releases/
+      link: https://github.com/Horizon-OC/Horizon-OC/releases/latest/download/dist.zip
     - theme: alt
       text: Frequently Asked Questions
       link: /faq
 
 features:
-  - title: CPU/GPU/MEM Overclock
-    details: High potential overclocking for CPU, GPU, and Memory with safe limits.
-  - title: GPU Governor
-    details: Dynamically lower the frequency on the GPU to save power and achieve lower temperatures.
+  - title: CPU/GPU/MEM/LCD Overclock
+    details: High potential overclocking for CPU, GPU, Memory and LCD with safe limits.
+  - title: Governor
+    details: Dynamically lower the frequencies to save power and achieve lower temperatures.
   - title: Built-in configurator overlay
-    details: Configure Horizon-OC for your console using the integrated hoc-clk overlay right away on your switch.
-  - title: Memory timings on-the-go
-    details: Change memory timings without needing to reboot your console.
+    details: Configure Horizon-OC for your console using the integrated overlay right away on your switch.
+  - title: Settings on-the-go
+    details: Change certian settings without needing to reboot your console.
 ---
 
