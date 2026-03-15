@@ -29,7 +29,8 @@ export default defineConfig({
         items: [
           { text: 'Getting Started', link: '/guide.md' },
           { text: 'Frequently Asked Questions', link: '/faq.md' },
-          { text: 'Mariko OC Guide', link: '/mariko.md' }
+          { text: 'Mariko OC Guide', link: '/mariko.md' },
+          { text: 'Erista OC Guide', link: '/erista.md' }
         ]
       }
     ],
