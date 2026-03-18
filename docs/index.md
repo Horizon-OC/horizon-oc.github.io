@@ -27,6 +27,6 @@ features:
   - title: Built-in configurator overlay
     details: Configure Horizon-OC for your console using the integrated overlay right away on your switch.
   - title: Settings on-the-go
-    details: Change certian settings without needing to reboot your console.
+    details: Change certain settings without needing to reboot your console.
 ---
 
