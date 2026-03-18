@@ -11,6 +11,10 @@ Getting started is easy, so long as you have a modded Switch with Atmosphere.
 Please check that your Atmosphere version matches before proceeding, otherwise you will get a black screen.
 
 ::: warning IMPORTANT
+As of March 17th, Nintendo Switch firmware **22.0.0** has been released. Atmosphere has not yet received an update for this firmware. Until then, please remain on versions below **21.2.0**.
+:::
+
+::: warning IMPORTANT
 Whenever you install HOC, we recommend doing it through **Haze MTP**, **Hekate UMS**, or any **FTP server**. Do not remove the SD card from the slot; frequent removal can harm the reader.
 :::
 
