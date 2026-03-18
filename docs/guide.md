@@ -26,6 +26,8 @@ Whenever you install HOC, we recommend doing it through **Haze MTP**, **Hekate U
 This will overwrite your current version of `sys-clk`. If you must keep your specific version, copy only `atmosphere/kips/hoc.kip` to the SD card in its respective folder. However, rest assured `hoc-clk` has many more features and is the supported version going forward.
 :::
 
+::: tip Custom exosphere
+You might have noticed on the root of the folder there's an `exosphere.bin` file. This allows you to perform memory timings on-the-go without a restart. This is optional and it will not affect overclocking capabilities.
 To use it, copy it to: `atmosphere/exosphere.bin`
 :::
 
