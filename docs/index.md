@@ -20,13 +20,22 @@ hero:
       link: /faq
 
 features:
-  - title: CPU/GPU/MEM/LCD Overclock
-    details: High potential overclocking for CPU, GPU, Memory and LCD with safe limits.
+  - title: CPU/GPU/MEM/Display Overclock
+    details: High potential overclocking for CPU, GPU, Memory and the display with safe limits.
+  - title: CPU/GPU/MEM/Display voltage adjustment
+    details: Adjust the voltage for the CPU, GPU, RAM or Display to reduce power consumption and heat output
   - title: Governor
     details: Dynamically lower the frequencies to save power and achieve lower temperatures.
   - title: Built-in configurator overlay
     details: Configure Horizon-OC for your console using the integrated overlay right away on your switch.
   - title: Settings on-the-go
     details: Change certain settings without needing to reboot your console.
+  - title: Safety features
+    details: Protect your console from damage with accurate temperature along with clock cappings.
+  - title: Multiple overclocked RAM speeds
+    details: Get more than one overclocked ram speed for more precise tuning
+  - title: RAM Bandwidth monitor
+    details: See the exact RAM bandwidth to know how much your console is working
+
 ---
 

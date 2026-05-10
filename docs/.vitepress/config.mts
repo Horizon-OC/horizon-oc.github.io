@@ -30,7 +30,10 @@ export default defineConfig({
           { text: 'Getting Started', link: '/guide.md' },
           { text: 'Frequently Asked Questions', link: '/faq.md' },
           { text: 'Mariko OC Guide', link: '/mariko.md' },
-          { text: 'Erista OC Guide', link: '/erista.md' }
+          { text: 'Erista OC Guide', link: '/erista.md' },
+          { text: 'Integrations', link: '/integrations.md' },
+          { text: 'Credits', link: '/credits.md' }
+
         ]
       }
     ],
