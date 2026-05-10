@@ -31,11 +31,11 @@
  * to that type. e.g. !!! danger ** Warning:** text → ::: warning Warning
  *
  * Usage:
- *   node scripts/convert-to-vitepress.js <input.md> [output.md]
- *   node scripts/convert-to-vitepress.js https://rentry.co/mariko [output.md]
- *   node scripts/convert-to-vitepress.js rentry.co/mariko docs/mariko.md
- *   cat input.md | node scripts/convert-to-vitepress.js > output.md
- *   node scripts/convert-to-vitepress.js input.md --in-place
+ *   node scripts/convert.js <input.md> [output.md]
+ *   node scripts/convert.js https://rentry.co/mariko [output.md]
+ *   node scripts/convert.js rentry.co/mariko docs/mariko.md
+ *   cat input.md | node scripts/convert.js > output.md
+ *   node scripts/convert.js input.md --in-place
  */
 
 const fs = require("fs");

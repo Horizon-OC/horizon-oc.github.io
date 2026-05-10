@@ -40,7 +40,7 @@ Unstable RAM overclocking can cause sysNAND/emuNAND corruption and SD card corru
 ### Mariko PMIC Limits
 - Mariko uses a **5A CPU / 10A GPU PMIC** for power delivery.
 - Staying within these limits is essential for safe operation.
-  - Exceeding the **PMIC limit** slightly is possible, but not recommended and should be done with caution.     
+  - Exceeding the **PMIC limit** slightly is possible, but not recommended and should be done with caution.
 
 Reducing the voltage (**undervolting, UV**) decreases power draw, current, heat and helps avoid exceeding pmic limit.
 
@@ -62,35 +62,38 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 ---
 
 # Monitoring Your Switch
-- Use the Horizon OC Monitor to indicate if you've bypassed the charger IC limit (e.g., -1W displayed while charging).
+- Use the Horizon OC Monitor to monitor temperatures, power draw, voltages and clocks
+- Under high load, you may notice negative draw
+- This does NOT mean you're exceeding the 18W limit
+- It indicates the charger ic can no longer provide power faster than is being drawn (~12-15W)
+- This is relatively harmless, but be cautios
 - To get the best results, be sure your battery is 10-90% to display the real charging.
 
 ---
 
 # Checking Speedo and RAM Type
 
-1. Boot Hekate.
-2. Go to Console Info > HW & Fuses.
-3. Note your DRAM ID, along with your CPU, GPU and SoC Speedo.
-   - Speedos typically range from 1450 to 1810. A higher speedo means less voltage is needed for the same clock speed. A speedo of 1650 is generally considered good.
+ 1. Launch **Ultrahand** and open **Horizon OC**, then open the about section
+ 2. Take note of your **Speedos** (divided in CPU / GPU / SOC) and **Module name**.
+    - Speedos typically range from 1450 to 1810. A higher speedo means less voltage is needed for the same clock speed. A speedo of 1650 is generally considered good.
 
 **Speedo Brackets**
 >  - Speedos are divided into **brackets**.
 >  - **CPU UV mode** depends on the position within your bracket, but the resulting **voltage** depends on your specific speedo.
->  - It doesn’t matter how high you can set CPU UV mode — what matters is using your **maximum possible** CPU UV mode.
-
+>  - It doesn't matter how high you can set CPU UV Mode, but rather the **resulting voltage**, since two consoles with the same UV Mode can have different CPU voltages.
 ---
 
 #  RAM Tiers (Higher is better)
 
-| Tier        | RAM ID           |
-|-------------|------------------|
-| GOD-tier    | WT:B, NEI/NEE |
-| S-tier      |  AA-MGCR, AA-MGCL           |
-| A-tier      |AM-MGCJ, WT:E  |
-| B-tier      | WT:F    |
-| C-tier      | AB-MGCL    |
-| D-tier      | NME     |
+| Tier         | RAM ID                       |
+|-----------|-------------------------|
+| GOD-tier | WT:B, NEI/NEE           |
+| S-tier       | AA-MGCL/AA-MGCR |
+| A-tier?     | WT:E                           |
+| A-tier       | AM-MGCJ, WT:E        |
+| B-tier       | WT:F                           |
+| C-tier       | AB-MGCL                   |
+| D-tier       | NME                           |
 
 
 ---
@@ -118,12 +121,11 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 
 ## CPU Settings
 
-- **Boost Clock**
-  - 2601 MHz
+- **Boost Clock:** 2601 Mhz
  > **Note** Exceeding the PMIC Limit in boost mode is *usually* fine as it is only active for short periods of time.
 
-- **UV Table:** 1683Mhz Tbreak
-  - If you cannot even do **High Freq UV1**, try **1581Mhz Tbreak**.
+- **UV Table:** 1683 Mhz Tbreak
+  - If you cannot even do **High Freq UV1**, try **1581 Mhz Tbreak**.
     -  Tbreak describes the frequency where the low and high UV modes split.
   - Extreme UV table may provide lower voltages on some units but may cause issues, testing is advised.
 
@@ -136,7 +138,7 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 - **High UV:** 5-12 (find your highest stable value).
 
 - **CPU Max Clock:**
-  - Sets the maximum allowed clockspeed.
+  - Sets the maximum allowed clock speed.
 
 - **Low Freq Vmin:** 590 mV
   - In case you experience issues with low Freq UV, try raising Low Freq Vmin to 610-620mV.
@@ -150,7 +152,7 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 
 ## GPU Settings
 
-- **Undervolt Table:** HiOPT Table
+- **Undervolt Table:** High UV Table
 
 - **GPU DVFS:**
   - When RAM is overclocked, the minimum GPU voltage requirement is raised.
@@ -159,13 +161,22 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 
  - **GPU DVFS Offset:** 0
 
-- **Vmin:** Auto
+- **Vmin:** 580 mV
 
 - **Vmax:** 800 mV
 
 - **Voltage Offset:** 0
 
 ## RAM Settings
+
+- **Step Mode**:
+  - Determines how memory frequencies increase in the available list.
+  - 66 MHz: Frequencies increase in steps of 66 MHz, e.g., 1600 → 1666 → 1733
+  - 100 MHz: Frequencies increase in steps of 100 MHz, e.g., 1600 → 1700 → 1800
+  - JEDEC Mode: Limits the available memory frequencies to standard JEDEC values, up to and including your selected maximum.
+    - Available options include: 1866, 1996, 2133, 2400, 2666, 2933, 3200
+    - Your selected maximum frequency will always be shown, even if it is not a standard JEDEC value
+  - Choose your preferred option
 
 - **HP Mode** ON
  > **ℹ️ Tip:** HP Mode improves latency by disabling power down.
@@ -176,69 +187,42 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 
 - **DVB Shift:** 1–10
   - Boosts SoC voltage to help stabilize RAM, especially at high frequencies (2400 MHz+ and 3000Mhz+).
-  - It's advised to start of with a DVB shift of 10 and only lower it to 2-6 after finding your max RAM speed.  
-   - Higher DVB shift does not measurably increase power draw, but it is going to increase heat slightly.       
+  - It's advised to start of with a DVB shift of 10 and only lower it to 2-6 after finding your max RAM speed.
+  - Higher DVB shift does not measurably increase power draw, but it is going to increase heat slightly.
 
- - **Base Latency: (tRWL)**
-   - Read Latency: **2133**
-   - Write Latency: **2133**
-     - A higher base latency allows for a higher frequency at a small latency cost.
-     - Find your maximum frequency using **2133** base latency.
-     - You may tighten base latency once you find your __maximum__ frequency and tightest timings.
-        - Tightening base latency is **only** worth it if you can maintain the same ram frequency.
-        - **Write latency** can usually be tightened further than **read latency**.
-        - Increasing VDD2 can help tighten latency, but it **never** helps increase maximum frequency.
+### RAM Configuration Based on Tier
 
-### RAM Configuration Based on Tier for Different Base Latency
-
-#### 2133/1866 Base Latency Tier List (Recommended docked)
-| Tier | RAM ID       | Ram Clock | VDD2   | VDDQ  | Common Timings           | Super Tight (ST) Timings  |     
-|------|--------------|-----------|--------|-------|--------------------------|---------------------------|     
+| Tier | RAM ID       | Ram Clock | VDD2   | VDDQ  | Common Timings           | Super Tight (ST) Timings  |
+|------|--------------|-----------|--------|-------|--------------------------|---------------------------|
 | GOD  | WT:B         | 3066–3200 | 1175 mV| 600 mV| (4-4-5) 4-2-6-5-6        | (6-6-7) 5-2-6-5-6         |
-| GOD  | NEI/NEE/x267 | 3100–3300 | 1175 mV| 640 mV| (3-3-2) 1-5-5-4-6        | (4-4-4) 2-7-6-5-6         |     
-| S    | AA-MGCL/MGCR | 2766–3100 | 1175 mV| 640 mV| (4-4-5) 4-5-5-6-6        | (4-4-8) 5-5-6-7-6         |     
-| A    | AM-MGCJ      | 2633–2933 | 1175 mV| 640 mV| (3-2-4) 1-4-4-4-6        | (4-3-8) 1-5-4-4-6         |     
-| A    | WT:E         | 2500–2933 | 1175 mV| 600 mV| (2-2-2) 1-4-4-4-6        | (3-5-3) 2-5-4-5-6         |     
-| B    | WT:F         | 2633–2800 | 1175 mV| 600 mV| (4-4-2) 4-4-6-3-6        | (5-5-4) 4-5-6-5-6         |     
-| C    | AB-MGCL      | 2500-2766 | 1175 mV| 640 mV| (4-4-4) 3-4-5-6-6        | (4-4-8) 4-5-6-8-6         |     
-| D    | NME          | 2500-2766 | 1175 mV| 640 mV| (2-2-1) 0-1-4-3-6        | (3-3-4) 0-1-4-4-6         |     
-
-#### 1600 Base Latency Tier List
-| Tier | RAM ID       | Ram Clock | VDD2   | VDDQ  | Common Timings           | Super Tight (ST) Timings  |     
-|------|--------------|-----------|--------|-------|--------------------------|---------------------------|     
-| GOD  | NEI/NEE/x267 | 2500–2933 | 1175 mV| 640 mV| (3-3-2) 1-5-5-4-6        | (4-4-4) 2-7-6-5-6         |     
-| GOD  | WT:B         | 2466–2600 | 1175 mV| 600 mV| (4-4-5) 4-2-6-5-6        | (6-6-7) 5-2-6-5-6         |     
-| S    | WT:F         | 2400–2533 | 1175 mV| 600 mV| (4-4-2) 4-4-6-3-6        | (5-5-4) 4-5-6-5-6         |     
-| A    | AA-MGCL/MGCR | 2300–2600 | 1175 mV| 640 mV| (4-4-5) 4-5-5-6-6        | (4-4-8) 5-5-6-7-6         |     
-| B    | AM-MGCJ      | 2300–2466 | 1175 mV| 640 mV| (3-2-4) 1-4-4-4-6        | (4-3-8) 1-5-4-4-6         |     
-| B    | WT:E         | 2300–2466 | 1175 mV| 600 mV| (2-2-2) 1-4-4-4-6        | (3-5-3) 2-5-4-5-6         |     
-| C    | AB-MGCL      | 2133–2500 | 1175 mV| 640 mV| (4-4-4) 3-4-5-6-6        | (4-4-8) 4-5-6-8-6         |     
-| D    | NME          | 2133–2333 | 1175 mV| 640 mV| (2-2-1) 0-1-4-3-6        | (3-3-4) 0-1-4-4-6         |     
+| GOD  | NEI/NEE/x267 | 3100–3300 | 1175 mV| 640 mV| (3-3-2) 1-5-5-4-6        | (4-4-4) 2-7-6-5-6         |
+| S    | AA-MGCL/MGCR | 2766–3100 | 1175 mV| 640 mV| (4-4-5) 4-5-5-6-6        | (4-4-8) 5-5-6-7-6         |
+| A?    | WT:E         | 2500?–3033 | 1175 mV| 600 mV| (2-2-2) 1-4-4-4-6        | (3-5-3) 2-5-4-S-6         |
+| B    | AM-MGCJ      | 2633–2933 | 1175 mV| 640 mV| (3-2-4) 1-4-4-4-6        | (4-3-8) 1-5-4-4-6         |
+| C    | WT:F         | 2633–2800 | 1175 mV| 600 mV| (4-4-2) 4-4-6-3-6        | (5-5-4) 4-5-6-5-6         |
+| D    | AB-MGCL      | 2500-2766 | 1175 mV| 640 mV| (4-4-4) 3-4-5-6-6        | (4-4-8) 4-5-6-8-6         |
+| E    | NME          | 2300-2566 | 1175 mV| 640 mV| (2-2-3) 0-1-2-2-6        | (5-3-4) 1-8-3-3-6         |
 
 ::: danger
-It's recommended to find your maximum ram frequency before adjusting timings. This makes it easier to pinpoint common failure points.
-:::
-
-::: tip note
-``t7`` and ``t6`` are very frequency dependent and likely need to be loosened at higher ram clocks.
+It's recommended to find your maximum ram frequency before adjusting timings. This makes it easier to pinpoint common failure points. ``t7`` and ``t6`` are very frequency dependent and likely need to be loosened at higher ram clocks.
 :::
 
 ::: tip Note
-1333tRWL achieves better performance but tops out at a lower frequency (often 300-500MHz less compared to 1600tRWL), recommended to test for handheld.
+2533 MHz is known to cause issues due to timing changes, and thus may need looser timings compared to other frequencies. Test with caution.
 :::
 
 ::: tip Note
-2533MHz is known to cause issues due to timing changes, and thus may need looser timings compared to other frequencies. Test with caution.
+If your RAM clock goes significantly lower than the target, you may be experiencing a "PLL drop" (where the memory controller is unable to handle the high ram frequency). These drops become more frequent at high SoC temperatures, so monitor your RAM clock carefully! The only way to avoid such PLL drops other than keeping your SoC's temperature low is to get a Switch with a higher SoC Speedo, as a higher SoC speedo generally means the PLL can handle more frequency. This phenomenon generally occurs when pushing your RAM above 3000 MHz.
 :::
 
 ::: tip Note
-If your RAM clock goes significantly lower than the target, you may be experiencing a "PLL drop" (where the memory controller is unable to handle the high ram frequency). These drops become more frequent at high SoC temperatures, so monitor your RAM clock carefully! The only way to avoid such PLL drops other than keeping your SoC's temperature low is to get a Switch with a higher SoC Speedo, as a higher SoC speedo generally means the PLL can handle more frequency. This phenomenon generally occurs when pushing your RAM above 3000MHz.
+JEDEC frequencies may result in better performance, tighter timings, or improved stability, but results vary heavily depending on your memory’s silicon. In some cases, there may be no noticeable difference at all, as it ultimately depends on how your RAM behaves.
 :::
 
 # RAM Tuning Notes
 
 > **💡 Extra Headroom:** For tighter timings or base latency reduction, you may use slight overvoltage. Note that too much overvoltage can cause instability.
-> **1212** mV, while being beyond the ram module rating, still falls into the Nvidia pad rating (1212 mV).      
+> **1212** mV, while being beyond the ram module rating, still falls into the Nvidia pad rating (1212 mV).
 > There is no documented damage, but use at your own risk.
 
 > **🧪 Testing Method:**
@@ -253,6 +237,60 @@ If your RAM clock goes significantly lower than the target, you may be experienc
 > - Lower **T7**, **T6** if you encounter issues.
 > - RAM contributes the most to overall performance - prioritize finding your maximum frequency first.
 > - Rarely, some modules may fail even with common timings. If so, lower timings until stable.
+
+## Fine Tuning (GPU)
+This section is optional, but recommended as it may lower voltages further.
+- **Voltage Offset:** 5–25
+  - The UV2 table by default is very tight but it is slightly loose in some cases.
+  - Voltage Offset can be used to tighten it further.
+  - Test with 5, 10, 15, 20 or 25 when using High UV.
+  - Some GPUs may require **0** for stability.
+  - With very rare speedo bracket positions, higher UV offsets may work, test carefully.
+
+ - **GPU DVFS Offset:**
+   - Auto at first, lower it as much as possible once you find your maximum ram frequency.
+   - Test **Auto VMIN Offset** stability at a medium frequency (``998 MHz`` for instance), otherwise the GPU voltage may dominate over the **GPU DVFS** voltage.
+   - This helps improving battery in handheld mode with high RAM OC.
+   - It's possible to add positive offset, but this shouldn't be used unless you have issues.
+
+## Fine Tuning (RAM)
+
+This section is optional, but recommended as it can improve performance.
+
+- **Ram Latency**
+  - Allows you to configure read and write latency (tRWL)
+    - By default:
+       - 1866 tRWL is used up to and including 1866 MHz
+       - 2133 tRWL is used above that
+   - You can shift where the higher latency profile begins by setting the maximum frequency for 1866 tRWL
+   - You can disable specific latency profiles by setting them to `-`
+   - Disabling all custom values restores default behavior
+::: danger
+Read and write latencies are always separate and can be tuned independently.
+:::
+
+> **Performance notes:**
+> - 1866 tRWL may offer slightly better performance than 2133 max, but only if your RAM can handle it without requiring a frequency reduction
+> - The same applies to 1600 and 1333 tRWL profiles
+> - 1333 tRWL is often useful for handheld systems, but typically only scales reliably up to ~2133–2400 MHz (heavily dependent on your RAM silicon)
+> - Read and write latencies can be tuned separately
+> - Write latency can usually be tuned more aggressively (lower) than read latency
+
+- **RAM Timing tBreak / Low t7 / Low t6**
+  - The tBreak setting defines the frequency threshold where custom low timings stop applying
+  - Below this threshold, custom low t6/t7 timings are used
+  - At and above the tBreak frequency, standard (default) timings are used instead
+  - Normally, standard timings are always used, but setting tBreak introduces a switch point where low timings apply only below the configured frequency
+
+
+- **1333WL t2 Cap**
+  - A side effect of using 1333 write latency is that t2 may be limited to 2 or lower
+  - Horizon-OC automatically applies this limitation for affected frequencies
+  - You can override this behavior using the t2 cap setting
+
+- **t7 / t6 Fine Tune**
+  - Allows cycle-level adjustment of t7 and t6
+  - Intended for advanced users only
 
 # Clock Settings (Safe)
 
@@ -274,7 +312,7 @@ If your RAM clock goes significantly lower than the target, you may be experienc
  :::
 
 ::: tip Note
-Switch Lite limits are lower due to the 12W board power limit, but counts as Mariko for all other purposes.     
+Switch Lite limits are lower due to the 12W board power limit, but counts as Mariko for all other purposes.
 :::
 
 ### Mariko Max Clocks Docked and Plugged [HAC-001(-01), HEG-001]
@@ -307,7 +345,7 @@ Switch Lite limits are lower due to the 12W board power limit, but counts as Mar
   - 2133 MHz-2800 MHz+ (whatever is stable)
 
 ::: tip Note
-Switch Lite limits are lower due to the 12W board power limit, but counts as Mariko for all other purposes.     
+Switch Lite limits are lower due to the 12W board power limit, but counts as Mariko for all other purposes.
 :::
 
 ---
@@ -332,3 +370,7 @@ Switch Lite limits are lower due to the 12W board power limit, but counts as Mar
 - Your hekate_ipl.ini file is not set up correctly:
    - Validate that your boot entry contains `kip1=atmosphere/kips/hoc.kip`
    - It has to be below `pkg3=atmosphere/package3` (or fss0)
+
+# Need Help with Setup?
+
+### Follow this [guide](https://rentry.co/howtoget60fps) for a step-by-step setup.

@@ -7,15 +7,11 @@ description: Guide to installing Horizon OC
 
 Getting started is easy, so long as you have a modded Switch with Atmosphere.
 
-**Currently supported Atmosphere version:** `1.10.2`
+**Currently supported Atmosphere version:** `1.11.1`
 Please check that your Atmosphere version matches before proceeding, otherwise you will get a black screen.
 
 ::: warning IMPORTANT
-As of March 17th, Nintendo Switch firmware **22.0.0** has been released. Atmosphere has not yet received an update for this firmware. Until then, please remain on versions below **21.2.0**.
-:::
-
-::: warning IMPORTANT
-Whenever you install HOC, we recommend doing it through **Haze MTP**, **Hekate UMS**, or any **FTP server**. Do not remove the SD card from the slot; frequent removal can harm the reader.
+Whenever you install HOC, we recommend doing it through **Haze MTP**, **Hekate UMS**, or any **FTP server**. Do not remove the SD card from the slot, as frequent removal can harm the reader.
 :::
 
 1. Download latest dist.zip at **[Horizon-OC GitHub](https://github.com/Horizon-OC/Horizon-OC/releases/)**.
@@ -27,7 +23,7 @@ This will overwrite your current version of `sys-clk`. If you must keep your spe
 :::
 
 ::: tip Custom exosphere
-You might have noticed on the root of the folder there's an `exosphere.bin` file. This allows you to perform memory timings on-the-go without a restart. This is optional and it will not affect overclocking capabilities.
+You might have noticed on the root of the folder there's an `exosphere.bin` file. This allows certian features to work correctly. This is optional and it will not affect overclocking capabilities.
 To use it, copy it to: `atmosphere/exosphere.bin`
 :::
 
@@ -46,6 +42,7 @@ icon=bootloader/res/emu_boot.bmp
 Add the following line to the bottom of your chosen profile:
 ```ini
 kip1=atmosphere/kips/hoc.kip
+secmon=exosphere.bin
 ```
 
 ::: tip Safety Instance
@@ -53,7 +50,7 @@ You can also make a separate instance to boot without the .kip. In case an unsta
 
 Example:
 ```ini
-[Atmosphere No-KIP EmuNAND]
+[Atmosphere EmuNAND Safe Mode]
 pkg3=atmosphere/package3
 emummcforce=1
 icon=bootloader/res/emu_boot.bmp
