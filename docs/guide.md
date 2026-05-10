@@ -22,11 +22,6 @@ Whenever you install HOC, we recommend doing it through **Haze MTP**, **Hekate U
 This will overwrite your current version of `sys-clk`. If you must keep your specific version, copy only `atmosphere/kips/hoc.kip` to the SD card in its respective folder. However, rest assured `hoc-clk` has many more features and is the supported version going forward.
 :::
 
-::: tip Custom exosphere
-You might have noticed on the root of the folder there's an `exosphere.bin` file. This allows certian features to work correctly. This is optional and it will not affect overclocking capabilities.
-To use it, copy it to: `atmosphere/exosphere.bin`
-:::
-
 ### Configuration
 
 Once the files are moved, open `bootloader/hekate_ipl.ini`. Find the instance you want to run Horizon OC on.
@@ -42,7 +37,7 @@ icon=bootloader/res/emu_boot.bmp
 Add the following line to the bottom of your chosen profile:
 ```ini
 kip1=atmosphere/kips/hoc.kip
-secmon=exosphere.bin
+secmon=atmosphere/exosphere.bin
 ```
 
 ::: tip Safety Instance
