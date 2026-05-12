@@ -23,9 +23,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v6.2.0
+      - uses: actions/setup-node@v6.4.0
         with:
-          node-version: 25.6.0
+          node-version: 26.1.0
           cache: 'npm'
 
       - run: npm ci
@@ -42,5 +42,5 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
         id: deployment
