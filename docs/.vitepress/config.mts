@@ -27,13 +27,30 @@ export default defineConfig({
       {
         text: 'Documentation',
         items: [
-          { text: 'Getting Started', link: '/guide.md' },
-          { text: 'Frequently Asked Questions', link: '/faq.md' },
-          { text: 'Mariko OC Guide', link: '/mariko.md' },
-          { text: 'Erista OC Guide', link: '/erista.md' },
-          { text: 'Integrations', link: '/integrations.md' },
-          { text: 'Credits', link: '/credits.md' }
-
+          {
+            text: 'Getting Started',
+            collapsed: false,
+            items: [
+              { text: 'Guide', link: '/guide.md' },
+            ]
+          },
+          {
+            text: 'Guides',
+            collapsed: false,
+            items: [
+              { text: 'Mariko OC Guide', link: '/mariko.md' },
+              { text: 'Erista OC Guide', link: '/erista.md' },
+            ]
+          },
+          {
+            text: 'Support',
+            collapsed: false,
+            items: [
+              { text: 'Frequently Asked Questions', link: '/faq.md' },
+              { text: 'Integrations', link: '/integrations.md' },
+              { text: 'Credits', link: '/credits.md' },
+            ]
+          }
         ]
       }
     ],
