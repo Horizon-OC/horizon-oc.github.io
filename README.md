@@ -9,7 +9,7 @@ The main [VitePress](https://vitepress.dev/) 2.0.0 website wiki for the Horizon 
 
 ### Installation
 
-Install [Node.JS](https://nodejs.org/en) (CI builds with 25.6.1)
+Install [Node.JS](https://nodejs.org/en) (CI builds with 26.1.0)
 
 Clone the repository and install dependencies:
 
