@@ -5,7 +5,7 @@ The main [VitePress](https://vitepress.dev/) 2.0.0 website wiki for the Horizon 
 ## Project structure
 
 - `docs/` - Contains the markdown documentation and public assets.
-- `scripts/convert.js` - Only scripts, copies https://rentry.co/mariko or erista markdown guides.
+- `scripts/convert.js` - Only script, copies https://rentry.co/mariko or erista markdown guides.
 
 ### Installation
 
