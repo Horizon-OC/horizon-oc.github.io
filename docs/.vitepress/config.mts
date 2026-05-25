@@ -46,11 +46,15 @@ export default defineConfig({
             text: 'Support',
             collapsed: false,
             items: [
-              { text: 'Frequently Asked Questions', link: '/faq.md' },
-              { text: 'Integrations', link: '/integrations.md' },
-              { text: 'Credits', link: '/credits.md' },
+              { text: 'Error Codes', link: './errors.md'},
+              { text: 'Horizon OC Discord Server', link: 'https://discord.com/invite/vB7YMXctqh'},
+              { text: '60FPS Discord Server', link: 'https://discord.com/invite/S3eX47dHsB'}
             ]
-          }
+          },
+          { text: 'Credits', link: '/credits.md' },
+          { text: 'Frequently Asked Questions', link: '/faq.md' },
+          { text: 'Integrations', link: '/integrations.md' },
+          
         ]
       }
     ],
