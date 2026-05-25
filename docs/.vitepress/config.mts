@@ -54,7 +54,7 @@ export default defineConfig({
           { text: 'Credits', link: '/credits.md' },
           { text: 'Frequently Asked Questions', link: '/faq.md' },
           { text: 'Integrations', link: '/integrations.md' },
-          
+          { text: 'Extras', link: '/extras.md' },
         ]
       }
     ],
