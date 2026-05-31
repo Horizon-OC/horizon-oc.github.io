@@ -105,7 +105,7 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
   - Removes the clock cappings. Use with caution, especially on handheld mode. Recommended: ON
 
 - **Thermal Throttle:**
-  - Lowers clocks when a certain temperature threshold is reached (by default the limit is 70C). Recommended: ON
+  - Lowers clocks when a certain temperature threshold is reached (by default the limit is 70C). Recommended: OFF
 
 - **Handheld TDP:**
   - Lowers clocks when the power being pulled from the battery exceeds a threshold (by default 9600mW on regular consoles, 6400mW on lite). Recommended: OFF
@@ -187,8 +187,13 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 
 - **DVB Shift:** 1–10
   - Boosts SoC voltage to help stabilize RAM, especially at high frequencies (2400 MHz+ and 3000Mhz+).
-  - It's advised to start of with a DVB shift of 10 and only lower it to 2-6 after finding your max RAM speed.
+  - It's advised to start of with a DVB shift of 5 and only lower it to 2-4 after finding your max RAM speed.
   - Higher DVB shift does not measurably increase power draw, but it is going to increase heat slightly.
+
+- **Soc Vmax:**
+  - By default, 1000-1050mV max is used (exact max varies depending on speedo)
+  - You usually don't have to increase this unless you're approaching 3200 MHz ram - in that case it's recommended to use 1050mV
+  - Frequencies above 3200Mhz require a significantly higher soc voltage; 1075-1200mV
 
 ### RAM Configuration Based on Tier
 
@@ -201,7 +206,7 @@ Disabling GPU Scheduling will slightly increase power draw. Use it with caution.
 | B    | AM-MGCJ      | 2633–2933 | 1175 mV| 640 mV| (3-2-4) 1-4-4-4-6        | (4-3-8) 1-5-4-4-6         |
 | C    | WT:F         | 2633–2800 | 1175 mV| 600 mV| (4-4-2) 4-4-6-3-6        | (5-5-4) 4-5-6-5-6         |
 | D    | AB-MGCL      | 2500-2766 | 1175 mV| 640 mV| (4-4-4) 3-4-5-6-6        | (4-4-8) 4-5-6-8-6         |
-| E    | NME          | 2300-2566 | 1175 mV| 640 mV| (2-2-3) 0-1-2-2-6        | (5-3-4) 1-8-3-3-6         |
+| E    | NME          | 2300-2766 | 1175 mV| 640 mV| (2-2-3) 0-1-2-2-6        | (5-3-4) 1-8-3-3-6         |
 
 ::: danger
 It's recommended to find your maximum ram frequency before adjusting timings. This makes it easier to pinpoint common failure points. ``t7`` and ``t6`` are very frequency dependent and likely need to be loosened at higher ram clocks.
@@ -294,7 +299,7 @@ Read and write latencies are always separate and can be tuned independently.
 
 # Clock Settings (Safe)
 
-### Mariko Max Safe on Battery [HAC-001(-01), HEG-001]
+### Mariko V2 [HAC-001 (-01)] and OLED [HEG-001] Max Safe CLocks on Battery 
 *Switch units available from August 2019 and beyond, includes OLED & requires modchip*
 - **CPU:** 1963 MHz
 - **GPU:** 998 MHz
@@ -303,7 +308,7 @@ Read and write latencies are always separate and can be tuned independently.
  Drawing over 8.6W on battery will cause battery issues. Please avoid doing that for extended periods!
  :::
 
-### Switch Lite Max Safe Clocks on Battery [HDH-001]
+### Mariko Lite [HDH-001] Max Safe Clocks on Battery
 - **CPU:** 1785 MHz
 - **GPU:** 921 MHz
 - **RAM:** 2133 MHz - 2500+ MHz (use whatever is stable; 2400 MHz recommended for best battery life-to-performance ratio)
@@ -315,7 +320,7 @@ Read and write latencies are always separate and can be tuned independently.
 Switch Lite limits are lower due to the 12W board power limit, but counts as Mariko for all other purposes.
 :::
 
-### Mariko Max Clocks Docked and Plugged [HAC-001(-01), HEG-001]
+### Mariko V2 [HAC-001 (-01)] and OLED [HEG-001] Max Clocks Docked and Plugged in
 - **CPU:**
   - 2397 MHz: Safe to use.
   - 2499 MHz: May exceed **PMIC limit**, use carefully.
@@ -329,7 +334,7 @@ Switch Lite limits are lower due to the 12W board power limit, but counts as Mar
  - **RAM:**
    - 2133 MHz-3300 MHz+ (whatever is stable)
 
-### Switch Lite Max Clocks Plugged [HDH-001]
+### Mariko Lite [HDH-001] Max Clocks Plugged in
 - **CPU:**
   - 2397 MHz: Safe to use.
   - 2499 MHz: May exceed **PMIC limit**, use carefully.
