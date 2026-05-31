@@ -24,9 +24,9 @@ jobs:
 
       - name: Fetch and convert guides
         run: |
-          node scripts/convert-to-vitepress.js rentry.co/mariko docs/mariko.md
-          node scripts/convert-to-vitepress.js rentry.co/erista docs/erista.md
-          node scripts/convert-to-vitepress.js rentry.co/mariko2 docs/mariko2.md
+          node scripts/convert.js rentry.co/mariko docs/mariko.md &
+          node scripts/convert.js rentry.co/erista docs/erista.md &
+          node scripts/convert.js rentry.co/mariko2 docs/mariko2.md
       - name: Check for changes
         id: diff
         run: |
