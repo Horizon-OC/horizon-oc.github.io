@@ -6,7 +6,7 @@ hero:
   name: "Horizon OC"
   text: "An overclocking tool for Nintendo Switch"
   image:
-    src: /lite.svg
+    src: /logo.svg
     alt: Horizon OC Logo
   actions:
     - theme: brand
@@ -38,4 +38,34 @@ features:
     details: See the exact RAM bandwidth to know how much your console is working
 
 ---
+
+<div class="tab-cards">
+  <div class="tab-card">
+    <div class="tab-card-icon">
+      <img src="/lite.svg" alt="Lite" />
+    </div>
+    <p class="tab-card-text">Blrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p>
+  </div>
+
+  <div class="tab-card">
+    <div class="tab-card-icon">
+      <img src="/v1.svg" alt="Lite" />
+    </div>
+    <div class="tab-card-text">
+      <ul>
+        <li>CPU 612-2295MHz</li>
+        <li>RAM 1600-2400MHz</li>
+        <li>GPU 76-1075MHz</li>
+        Those can be achieved depending on the speedo and silicon binning.
+      </ul>
+    </div>
+  </div>
+  
+  <div class="tab-card">
+    <div class="tab-card-icon">
+      <img src="/v2.svg" alt="OLED" />
+    </div>
+    <p class="tab-card-text">Iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii</p>
+  </div>
+</div>
 

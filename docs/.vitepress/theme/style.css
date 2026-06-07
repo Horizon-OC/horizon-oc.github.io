@@ -222,6 +222,130 @@
   position: absolute;
   inset: -3px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #457e7890, #322d2e);
+  background: var(--vp-home-feature-gradient);
   z-index: -1;
+}
+
+:root {
+  --vp-home-feature-gradient: linear-gradient(135deg, #457e7890, #322d2e);
+}
+
+/*tab*/
+
+.tab-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: calc(100vw - 64px);
+  max-width: calc(var(--vp-layout-max-width) - 64px);
+  margin: 48px auto;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 960px) {
+  .tab-cards {
+    grid-template-columns: repeat(2, 1fr);
+    width: calc(100vw - 64px);
+    max-width: 640px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .tab-cards {
+    grid-template-columns: 1fr;
+    width: calc(100vw - 48px);
+    max-width: 400px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.tab-card {
+  background: var(--vp-c-bg-soft);
+  border-radius: 12px;
+  padding: 36px 32px 28px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.tab-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  background: var(--vp-home-feature-gradient);
+  z-index: -1;
+}
+
+.tab-card::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  background: var(--vp-home-feature-gradient);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.2s;
+  filter: blur(8px);
+}
+
+.tab-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.tab-card:hover::after {
+  opacity: 1;
+}
+
+.tab-card-icon {
+  width: 100%;
+  height: 190px;
+  margin: 0 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--vp-c-bg-alt);
+}
+
+.tab-card-icon img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.tab-card-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--vp-c-text-1);
+  margin-bottom: 12px;
+}
+
+.tab-card-text ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.tab-card-text li {
+  padding: 4px 0;
+}
+
+.tab-card-text li::before {
+  content: '— ';
+  color: var(--vp-c-brand-1);
+}
+
+.tab-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
