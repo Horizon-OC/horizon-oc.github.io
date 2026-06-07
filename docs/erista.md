@@ -110,11 +110,18 @@ Almost all Erista units have Samsung MGCH RAM. Hynix NLE and Micron WT:C are rar
 
 ### GPU Settings
 
-- **GPU Undervolt Mode:** High UV Table
+- **GPU Undervolt Mode:** HiOpt Table
 
 - **GPU VMIN:** 740–780 mV
 
 - **GPU Voltage Offset:** 0
+
+- **GPU DVFS:**
+  - When RAM is overclocked, the minimum GPU voltage requirement is raised.
+  - **DVFS** automatically adjusts your vmin based on your ram clock.
+  - When using the base ram clocks (1600 MHz), **GPU DVFS** is not active.
+
+ - **GPU DVFS Offset:** 0
 
 > **⚠️ Note:** To safely use a **998 MHz GPU clock**, keep GPU voltage **below 950 mV** (exact value may vary slightly depending on IDDQ and temperature).
 
@@ -183,15 +190,43 @@ This section is optional but recommended as it may lower voltages further.
   - Some GPUs might not be able to go below **0** without becoming unstable.
   - With very rare speedo bracket positions, higher UV offsets may work, test carefully.
 
+ - **GPU DVFS Offset:**
+   - Auto at first, lower it as much as possible once you find your maximum ram frequency.
+   - Test **Auto VMIN Offset** stability at a low frequency (``420 MHz`` for instance), otherwise the GPU voltage may dominate over the **GPU DVFS** voltage.
+   - This helps improving battery in handheld mode with high RAM OC.
+   - It's possible to add positive offset, but this shouldn't be used unless you have issues.
+
+## Fine Tuning (RAM)
+
+This section is optional, but recommended as it can improve performance.
+- **Ram Latency**
+  - Allows you to configure read and write latency (tRWL)
+    - By default:
+       - 1866 tRWL is used up to and including 1866 MHz
+       - 2133 tRWL is used above that
+   - You can shift where the higher latency profile begins by setting the maximum frequency for 1866 tRWL
+   - You can disable specific latency profiles by setting them to `-`
+   - Disabling all custom values restores default behavior
+::: danger
+Read and write latencies are always separate and can be tuned independently.
+:::
+
+> **Performance notes:**
+> - 1866 tRWL may offer slightly better performance than 2133 max, but only if your RAM can handle it without requiring a frequency reduction
+> - The same applies to 1600 and 1333 tRWL profiles
+> - 1333 tRWL is often useful for handheld systems, but typically only scales reliably up to ~2133–2400 MHz (heavily dependent on your RAM silicon)
+> - Read and write latencies can be tuned separately
+> - Write latency can usually be tuned more aggressively (lower) than read latency
+
 # Clock Settings
 
-### Erista Max Plugged [HAC-001, HEG-001]
+### Erista [HAC-001] Max Plugged
 - **CPU:** 2091 MHz (Use only with decent binning), else use 1785 MHz
-        - Very good binning may use **2295 MHz**, but it may be unstable or require high voltage and is not adviced.
+	- Very good binning may use **2295 MHz**, but it may be unstable or require high voltage and is not adviced.
 - **GPU:** 998 MHz (Use it only with UV2, try to avoid going over 950 mV), 921 MHz (safe, use it with undervolt)
 - **RAM:** 1862 MHz-2133 MHz+ (whatever is stable and within 1175 mV VDD2) (HEAVILY DEPENDENT ON RAM TYPE)
 
-### Erista Max Safe Clocks on Battery [HDH-001]
+### Erista [HAC-001] Max Safe Clocks on Battery
 - **CPU:** 1785 MHz
 - **GPU:** 460 MHz
 - **RAM:** 1862 MHz-2133 MHz+ (whatever is stable and within 1175 mV VDD2) (HEAVILY DEPENDENT ON RAM TYPE)
