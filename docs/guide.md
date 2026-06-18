@@ -7,7 +7,7 @@ description: Guide to installing Horizon OC
 
 Getting started is easy, so long as you have a modded Switch with Atmosphere.
 
-**Currently supported Atmosphere version:** `1.11.1`
+**Currently supported Atmosphere version:** `1.11.2`
 Please check that your Atmosphere version matches before proceeding, otherwise you will get a black screen.
 
 ::: warning IMPORTANT
