@@ -7,7 +7,6 @@ description: Guide to installing Horizon OC
 
 Getting started is easy, so long as you have a modded Switch with Atmosphere.
 
-**Currently supported Atmosphere version:** `1.11.2`
 Please check that your Atmosphere version matches before proceeding, otherwise you will get a black screen.
 Horizon OC only supports firmware `17.0.0` and above, so please update your firmware if it is below it.
 
@@ -45,7 +44,7 @@ You can also make a separate instance to boot without the .kip. In case an unsta
 
 Example:
 ```ini
-[Atmosphere EmuNAND Safe Mode]
+[EmuNAND no Kip]
 pkg3=atmosphere/package3
 emummcforce=1
 icon=bootloader/res/emu_boot.bmp
