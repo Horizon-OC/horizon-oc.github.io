@@ -10,7 +10,7 @@ Getting started is easy, so long as you have a modded Switch with Atmosphere.
 Please check that your Atmosphere version matches before proceeding, otherwise you will get a black screen.
 Horizon OC only supports firmware `17.0.0` and above, so please update your firmware if it is below it.
 
-::: warning IMPORTANT
+::: warning IMPORTANT :::
 Whenever you install HOC, we recommend doing it through **Haze MTP**, **Hekate UMS**, or any **FTP server**. Do not remove the SD card from the slot, as frequent removal can harm the reader.
 :::
 
